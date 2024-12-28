@@ -4,22 +4,34 @@ using UnityEngine;
 public class MonsterMovement : MonoBehaviour
 {
     public List<Vector3> pathNodes;
-    public float speed = 2f;
+    public List<Transform> waypointList;
+    public float speed = 2f; // 이동 속도
+    private int currentWaypointIndex = 0; // 현재 목표 Waypoint 인덱스
 
-    private int currentNodeIndex = 0;
+    private void Start()
+    {
+        waypointList = WaypointsManager.Instance.waypointList;
+    }
 
     void Update()
     {
-        if (currentNodeIndex < pathNodes.Count)
+        if (currentWaypointIndex < waypointList.Count)
         {
-            Vector3 targetPosition = pathNodes[currentNodeIndex];
-            transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+            // 현재 Waypoint로 이동
+            Transform target = waypointList[currentWaypointIndex];
+            Vector3 direction = target.position - transform.position;
+            transform.Translate(direction.normalized * speed * Time.deltaTime, Space.World);
 
-            // 노드에 도착하면 다음 노드로 이동
-            if (Vector3.Distance(transform.position, targetPosition) < 0.1f)
+            // Waypoint에 도달하면 다음 Waypoint로 전환
+            if (Vector3.Distance(transform.position, target.position) < 0.1f)
             {
-                currentNodeIndex++;
+                currentWaypointIndex++;
             }
+        }
+        else
+        {
+            // 끝 지점 도달 후 처리 (예: 제거, 점수 추가 등)
+            Destroy(gameObject);
         }
     }
 }

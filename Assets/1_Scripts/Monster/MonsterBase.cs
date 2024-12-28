@@ -11,15 +11,20 @@ public class MonsterData
 
 public class MonsterBase : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public bool IsAlive { get; set; }
+    public MonsterData MonsterData { get; private set; }
+    public int MonsterId { get; private set; }
 
-    // Update is called once per frame
-    void Update()
+    public void InitMonster(int monsterId, string type, int hp, float speed, int reward)
     {
-        
+        MonsterId = monsterId;
+        MonsterData = new MonsterData()
+        {
+            Type = type,
+            TotalHp = hp,
+            CurrentHp = hp,
+            Speed = speed,
+            Reward = reward
+        };
     }
 }
