@@ -1,16 +1,43 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public static SpawnManager Instance;
+
+    public GameObject monsterPrefab; // 몬스터 프리팹
+    public float spawnInterval = 2f; // 몬스터 생성 간격 (초)
+    public int maxMonsters = 10; // 최대 몬스터 수
+
+    private List<Transform> waypointList; // 몬스터가 따라갈 Waypoints
+    private int spawnedMonsters = 0; // 생성된 몬스터 수
+
+    public void SetInit()
     {
-        
+        Instance = this;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Activate()
     {
-        
+        waypointList = WaypointsManager.Instance.waypointList;
+
+        InvokeRepeating(nameof(SpawnMonster), 0f, spawnInterval);
+    }
+
+    void SpawnMonster()
+    {
+        if (spawnedMonsters >= maxMonsters)
+        {
+            // 최대 몬스터 수에 도달하면 스폰 중지
+            CancelInvoke(nameof(SpawnMonster));
+            return;
+        }
+
+        // 몬스터 생성
+        GameObject monster = Instantiate(monsterPrefab, waypointList[0].position, Quaternion.identity);
+
+        spawnedMonsters++;
     }
 }

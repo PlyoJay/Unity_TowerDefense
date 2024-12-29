@@ -14,16 +14,6 @@ public class Monster : MonsterBase
         
     }
 
-    private void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
-
     public virtual void Deactivate(bool _isInit = false)
     {
         if (_isInit == false)
