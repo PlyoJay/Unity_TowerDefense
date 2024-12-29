@@ -4,7 +4,6 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    [SerializeField] private TileManager tileManager = null;
     [SerializeField] private WaypointsManager waypointsManager = null;
     [SerializeField] private SpawnManager spawnManager = null;
 
@@ -12,7 +11,6 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
 
-        tileManager.SetInit();
         waypointsManager.SetInit();
         spawnManager.SetInit();
 
@@ -21,7 +19,6 @@ public class GameManager : MonoBehaviour
 
     public void Activate_Func()
     {
-        //TileManager.Instance.Activate();
         WaypointsManager.Instance.Activate();
         SpawnManager.Instance.Activate();
     }
