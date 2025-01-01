@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Monster : MonsterBase
 {
-    public void Init()
+    public void Init(int id)
     {
-        InitMonster(0, "Circle", 100, 1.0f, 50);
+        InitMonster(id, "Circle", 100, 1.0f, 50);
     }
 
     public virtual void Activate()
