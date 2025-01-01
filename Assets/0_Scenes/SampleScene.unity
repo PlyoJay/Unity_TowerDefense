@@ -3046,6 +3046,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AttackRangeCollider: {fileID: 1200241913}
+  rotationTransform: {fileID: 1200241912}
 --- !u!4 &1200241912
 Transform:
   m_ObjectHideFlags: 0
