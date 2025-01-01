@@ -147,7 +147,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eabcbdbed145bb3408cb84254d6160ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pathNodes: []
   waypointList: []
   speed: 2
 --- !u!58 &8513652599333581710
@@ -201,7 +200,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2

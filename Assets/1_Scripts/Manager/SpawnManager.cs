@@ -39,7 +39,7 @@ public class SpawnManager : MonoBehaviour
 
         Monster monsterObj = Instantiate<GameObject>(monsterPrefab, _waypointList[0].position, Quaternion.identity).GetComponent<Monster>();
         monsterObj.Init();
-        Monster monster = Instantiate<Monster>(monsterObj, _waypointList[0].position, Quaternion.identity);
+        //Monster monster = Instantiate<Monster>(monsterObj, _waypointList[0].position, Quaternion.identity);
 
         _spawnedMonsters++;
     }

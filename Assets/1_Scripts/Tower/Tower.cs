@@ -15,4 +15,30 @@ public class Tower : TowerBase
 
         AttackRangeCollider.radius = TowerData.AttackRange;
     }
+
+    public void OnMouseOver()
+    {
+        base.EnableCircle();
+    }
+
+    public void OnMouseExit()
+    {
+        base.DisableCircle();
+    }
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        Monster monster = collision.GetComponent<Monster>();
+        if (monster != null)
+        {
+            Debug.Log($"ID number {monster.MonsterId} Monster Entered Tower Range");
+        }
+    }
+
+    public override void Start()
+    {
+        base.Start();
+
+        base.SetLineRenderer(AttackRangeCollider);
+    }
 }

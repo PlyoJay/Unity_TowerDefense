@@ -6,7 +6,7 @@ public class Monster : MonsterBase
 {
     public void Init()
     {
-        InitMonster(0, "Circle", 100, 2.0f, 50);
+        InitMonster(0, "Circle", 100, 1.0f, 50);
     }
 
     public virtual void Activate()

@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class MonsterMovement : MonoBehaviour
 {
-    public List<Vector3> pathNodes;
     public List<Transform> waypointList;
     public float speed = 2f; // 이동 속도
+
     private int currentWaypointIndex = 0; // 현재 목표 Waypoint 인덱스
 
     private void Start()
@@ -17,13 +17,17 @@ public class MonsterMovement : MonoBehaviour
     {
         if (currentWaypointIndex < waypointList.Count)
         {
-            // 현재 Waypoint로 이동
             Transform target = waypointList[currentWaypointIndex];
-            Vector3 direction = target.position - transform.position;
-            transform.Translate(direction.normalized * speed * Time.deltaTime, Space.World);
+            Vector3 targetPosition = new Vector3(target.position.x, target.position.y, transform.position.z);
+
+            // 방향 벡터 정규화
+            Vector3 direction = (targetPosition - transform.position).normalized;
+
+            // 속도와 Time.deltaTime 적용
+            transform.position += direction * speed * Time.deltaTime;
 
             // Waypoint에 도달하면 다음 Waypoint로 전환
-            if (Vector3.Distance(transform.position, target.position) < 0.1f)
+            if (Vector3.Distance(transform.position, targetPosition) < 0.05f)
             {
                 currentWaypointIndex++;
             }
