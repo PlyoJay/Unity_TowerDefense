@@ -1664,7 +1664,7 @@ GameObject:
   - component: {fileID: 426545264}
   - component: {fileID: 426545265}
   m_Layer: 6
-  m_Name: Square
+  m_Name: Canon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2056,6 +2056,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 305035bcb0403e846a4fbe0a8ad19849, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rootTransform: {fileID: 1910266129}
   monsterPrefab: {fileID: 5000529833479649235, guid: 4b46da19a4b2e9e47b1cf178562296d2, type: 3}
   spawnInterval: 0.5
   _maxMonsters: 5
@@ -3046,8 +3047,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff12defc81f96f34191e0694f6070329, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackRangeCollider: {fileID: 1200241913}
-  rotationTransform: {fileID: 1200241912}
 --- !u!4 &1200241912
 Transform:
   m_ObjectHideFlags: 0
