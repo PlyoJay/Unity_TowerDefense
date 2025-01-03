@@ -6,7 +6,7 @@ public class Tower : TowerBase
 {
     public void Init()
     {
-        base.InitTower(0, "Tower1", 20, 2.0f, 2.0f, 40f, 1.0f, 50);
+        base.InitTower(0, "Tower1", 20, 0.2f, 2.0f, 15, 1.0f, 50);
     }
 
     public override void SetRange()

@@ -7,12 +7,16 @@ public class TowerRange : MonoBehaviour
     public CircleCollider2D _attackRangeCollider;
     public Transform _rotationTransform;
 
+    private Tower _tower;
+
     private LineRenderer _lineRenderer;
     private int _segments = 50;
 
-    private HashSet<GameObject> monstersInRange = new HashSet<GameObject>();
+    private HashSet<GameObject> _monstersInRange = new HashSet<GameObject>();
 
-    public void SetLineRenderer(CircleCollider2D collider)
+    private float _lastAttackTime = 0f;
+
+    private void SetLineRenderer(CircleCollider2D collider)
     {
         _lineRenderer = GetComponent<LineRenderer>();
 
@@ -30,7 +34,7 @@ public class TowerRange : MonoBehaviour
         _lineRenderer.enabled = false;
     }
 
-    public void DrawCircle(CircleCollider2D collider)
+    private void DrawCircle(CircleCollider2D collider)
     {
         float radius = collider.radius;
         Vector3 offset = collider.offset;
@@ -50,10 +54,19 @@ public class TowerRange : MonoBehaviour
         }
     }
 
+    private void Attack()
+    {
+        foreach (GameObject monster in _monstersInRange)
+        {
+            Monster monsterScript = monster.GetComponent<Monster>();
+            monsterScript.TakeDamage(_tower.TowerData.AttackPower, _tower.TowerData.ArmorPenetration);
+        }
+    }
+
     private void Start()
     {
-        Tower tower = GetComponent<Tower>();
-        _attackRangeCollider.radius = tower.TowerData.AttackRange;
+        _tower = GetComponent<Tower>();
+        _attackRangeCollider.radius = _tower.TowerData.AttackRange;
         SetLineRenderer(_attackRangeCollider);
     }
 
@@ -72,7 +85,7 @@ public class TowerRange : MonoBehaviour
         Monster monster = collision.GetComponent<Monster>();
         if (monster != null)
         {
-            monstersInRange.Add(monster.gameObject);
+            _monstersInRange.Add(monster.gameObject);
             Debug.Log($"ID number {monster.MonsterId} Monster Entered Tower Range");
         }
     }
@@ -89,6 +102,12 @@ public class TowerRange : MonoBehaviour
             // Z축 회전 적용 (2D에서)
             Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
             transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 400f * Time.deltaTime);
+
+            if (Time.time >= _lastAttackTime + _tower.TowerData.AttackSpeed)
+            {
+                Attack();
+                _lastAttackTime = Time.time; // 마지막 공격 시간 업데이트
+            }
         }
     }
 
@@ -97,7 +116,7 @@ public class TowerRange : MonoBehaviour
         Monster monster = collision.GetComponent<Monster>();
         if (monster != null)
         {
-            monstersInRange.Remove(monster.gameObject);
+            _monstersInRange.Remove(monster.gameObject);
             Debug.Log($"ID number {monster.MonsterId} Monster Exit Tower Range");
         }
     }

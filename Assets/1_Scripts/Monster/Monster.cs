@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,7 @@ public class Monster : MonsterBase
 {
     public void Init(int id)
     {
-        InitMonster(id, "Circle", 100, 1.0f, 50);
+        InitMonster(id, "Circle", 100, 5.0f, 1.0f, 50);
     }
 
     public virtual void Activate()
@@ -18,7 +19,22 @@ public class Monster : MonsterBase
     {
         if (_isInit == false)
         {
+            Destroy(gameObject);
+        }
+    }
 
+    public void TakeDamage(float attackPower, float armorPenetration)
+    {
+        float validArmor = MonsterData.Armor * (1 - armorPenetration / 100);
+
+        attackPower = attackPower - validArmor;
+
+        MonsterData.CurrentHp -= (int)attackPower;
+        Debug.Log($"Monster {MonsterId} Hp Remaining : {MonsterData.CurrentHp}");
+        if (MonsterData.CurrentHp <= 0)
+        {
+            Debug.Log("Monster is dead");
+            Destroy(this.gameObject);
         }
     }
 }

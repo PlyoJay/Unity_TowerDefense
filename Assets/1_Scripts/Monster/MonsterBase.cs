@@ -5,6 +5,7 @@ public class MonsterData
     public string Type;
     public int TotalHp;
     public int CurrentHp;
+    public float Armor;
     public float Speed;
     public float Reward;
 }
@@ -15,7 +16,7 @@ public class MonsterBase : MonoBehaviour
     public MonsterData MonsterData { get; private set; }
     public int MonsterId { get; private set; }
 
-    public void InitMonster(int monsterId, string type, int hp, float speed, int reward)
+    public void InitMonster(int monsterId, string type, int hp, float armor, float speed, int reward)
     {
         MonsterId = monsterId;
         MonsterData = new MonsterData()
@@ -23,6 +24,7 @@ public class MonsterBase : MonoBehaviour
             Type = type,
             TotalHp = hp,
             CurrentHp = hp,
+            Armor = armor,
             Speed = speed,
             Reward = reward
         };

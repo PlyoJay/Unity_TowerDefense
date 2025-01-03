@@ -7,6 +7,7 @@ public class SpawnManager : MonoBehaviour
 {
     public static SpawnManager Instance;
 
+    public Transform _rootTransform;
     public GameObject monsterPrefab; // 몬스터 프리팹
     public float spawnInterval = 2f; // 몬스터 생성 간격 (초)
     public int _maxMonsters = 10; // 최대 몬스터 수
@@ -37,7 +38,7 @@ public class SpawnManager : MonoBehaviour
 
         // 몬스터 생성
 
-        Monster monsterObj = Instantiate<GameObject>(monsterPrefab, _waypointList[0].position, Quaternion.identity).GetComponent<Monster>();
+        Monster monsterObj = Instantiate<GameObject>(monsterPrefab, _waypointList[0].position, Quaternion.identity, _rootTransform).GetComponent<Monster>();
         monsterObj.Init(_spawnedMonsters);
         //Monster monster = Instantiate<Monster>(monsterObj, _waypointList[0].position, Quaternion.identity);
 
