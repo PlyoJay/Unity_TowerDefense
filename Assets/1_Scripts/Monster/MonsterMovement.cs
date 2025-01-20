@@ -4,12 +4,15 @@ using UnityEngine;
 public class MonsterMovement : MonoBehaviour
 {
     public List<Transform> waypointList;
-    public float speed = 2f; // 이동 속도
+
+    private Monster _monster;
 
     private int currentWaypointIndex = 0; // 현재 목표 Waypoint 인덱스
 
     private void Start()
     {
+        _monster = GetComponent<Monster>();
+
         waypointList = WaypointsManager.Instance.waypointList;
     }
 
@@ -24,7 +27,7 @@ public class MonsterMovement : MonoBehaviour
             Vector3 direction = (targetPosition - transform.position).normalized;
 
             // 속도와 Time.deltaTime 적용
-            transform.position += direction * speed * Time.deltaTime;
+            transform.position += direction * _monster.MonsterData.Speed * Time.deltaTime;
 
             // Waypoint에 도달하면 다음 Waypoint로 전환
             if (Vector3.Distance(transform.position, targetPosition) < 0.05f)

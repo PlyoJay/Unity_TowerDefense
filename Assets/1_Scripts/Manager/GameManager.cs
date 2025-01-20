@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private WaypointsManager waypointsManager = null;
     [SerializeField] private SpawnManager spawnManager = null;
+    [SerializeField] private TowerPlacement placementManager = null;
 
     public void SetInit()
     {
@@ -13,6 +14,7 @@ public class GameManager : MonoBehaviour
 
         waypointsManager.SetInit();
         spawnManager.SetInit();
+        placementManager.SetInit();
 
         this.Activate_Func();
     }
