@@ -200,7 +200,7 @@ TilemapRenderer:
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
-  m_Mode: 0
+  m_Mode: 1
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
 --- !u!1839735485 &177968516
@@ -2903,10 +2903,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6a10c072240c074c83da52225f6936a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tilemap: {fileID: 177968516}
-  towerPrefab: {fileID: 4584507536379132914, guid: edb83f1c0b66fbc4294e9186eaeb2356, type: 3}
-  towerCost: 100
-  highlightPrefab: {fileID: 2493352755783403589, guid: e7ad9cf44f032384e84efb28317b8dd4, type: 3}
+  _tilemap: {fileID: 177968516}
+  _towerPrefab: {fileID: 4584507536379132914, guid: edb83f1c0b66fbc4294e9186eaeb2356, type: 3}
+  _towerCost: 100
+  _highlightPrefab: {fileID: 2493352755783403589, guid: e7ad9cf44f032384e84efb28317b8dd4, type: 3}
 --- !u!4 &1777642768
 Transform:
   m_ObjectHideFlags: 0
