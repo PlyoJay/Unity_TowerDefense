@@ -59,12 +59,15 @@ public class TowerPlacement : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonDown(0))
+        if (tilemap.HasTile(cellPosition))
         {
-            // 마우스 클릭으로 타워 배치
-            if (CanPlaceTower(cellPosition))
+            if (Input.GetMouseButtonDown(0))
             {
-                PlaceTower(cellPosition);
+                // 마우스 클릭으로 타워 배치
+                if (CanPlaceTower(cellPosition))
+                {
+                    PlaceTower(cellPosition);
+                }
             }
         }
     }
