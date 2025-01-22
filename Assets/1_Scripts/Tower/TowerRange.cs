@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class TowerRange : MonoBehaviour
 {
-    private CircleCollider2D _attackRangeCollider;
     [SerializeField] private Tower _tower;
 
     private HashSet<GameObject> _monstersInRange = new HashSet<GameObject>();
@@ -12,17 +11,31 @@ public class TowerRange : MonoBehaviour
 
     private void Attack()
     {
+        List<GameObject> monsterListToRemove = new List<GameObject>();
+
         foreach (GameObject monster in _monstersInRange)
         {
             Monster monsterScript = monster.GetComponent<Monster>();
+
+            if (monsterScript.IsAlive == false)
+            {
+                monsterListToRemove.Add(monster);
+                continue;
+            }
+
             monsterScript.TakeDamage(_tower.TowerData.AttackPower, _tower.TowerData.ArmorPenetration);
+        }
+
+        foreach (var monster in monsterListToRemove)
+        {
+            _monstersInRange.Remove(monster);
+            Destroy(monster);
         }
     }
 
     private void Start()
     {
-        _attackRangeCollider = GetComponent<CircleCollider2D>();
-        _attackRangeCollider.radius = _tower.TowerData.AttackRange;
+    
     }
 
     void Update()

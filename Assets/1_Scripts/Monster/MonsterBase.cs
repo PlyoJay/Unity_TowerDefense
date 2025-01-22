@@ -12,7 +12,7 @@ public class MonsterData
 
 public class MonsterBase : MonoBehaviour
 {
-    public bool IsAlive { get; set; }
+    public bool IsAlive { get; set; } = true;
     public MonsterData MonsterData { get; private set; }
     public int MonsterId { get; private set; }
 

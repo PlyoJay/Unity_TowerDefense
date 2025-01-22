@@ -1885,7 +1885,7 @@ MonoBehaviour:
   _rootTransform: {fileID: 1910266129}
   monsterPrefab: {fileID: 5000529833479649235, guid: 4b46da19a4b2e9e47b1cf178562296d2, type: 3}
   spawnInterval: 0.5
-  _maxMonsters: 1
+  _maxMonsters: 20
 --- !u!1 &601737849
 GameObject:
   m_ObjectHideFlags: 0

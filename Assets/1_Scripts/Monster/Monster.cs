@@ -25,6 +25,9 @@ public class Monster : MonsterBase
 
     public void TakeDamage(float attackPower, float armorPenetration)
     {
+        if (!IsAlive)
+            return;
+
         float validArmor = MonsterData.Armor * (1 - armorPenetration / 100);
 
         attackPower = attackPower - validArmor;
@@ -34,7 +37,8 @@ public class Monster : MonsterBase
         if (MonsterData.CurrentHp <= 0)
         {
             Debug.Log("Monster is dead");
-            Destroy(this.gameObject);
+            IsAlive = false;
+            //Destroy(this.gameObject);
         }
     }
 }
